@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import SingleCard from './components/SingleCard';
 
@@ -14,6 +14,8 @@ const cardImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState (0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
   //shuffle cards
   const shuffleCards = () => {
@@ -25,6 +27,39 @@ function App() {
       setTurns(0)
   }
 
+  // handle a choice
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
+
+  // handle a match
+  useEffect (() => {
+    if (choiceOne && choiceTwo) {
+    if (choiceOne.src === choiceTwo.src) {
+      setCards(prevCards => {
+        return prevCards.map(card => {
+          if (card.src === choiceOne.src) {
+            return {...card, matched: true}
+          } else {
+            return card
+          }
+        })
+      })
+      resetTurn()
+    }
+    else {
+      setTimeout(() => resetTurn(), 1000)
+      }
+    }
+  }, [choiceOne, choiceTwo])
+
+  // reset choices & increase turn
+  const resetTurn = () => {
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setTurns(prevTurns => prevTurns + 1)
+  }
+
   return (
     <div className="App">
       <h1>Memory game</h1>
@@ -32,7 +67,12 @@ function App() {
 
       <div className='card-grid'>
         {cards.map(card => (
-          <SingleCard key={card.id} card={card}/>
+          <SingleCard 
+            key={card.id} 
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+          />
         ))}
       </div>
     </div>
