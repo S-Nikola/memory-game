@@ -2,13 +2,24 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import SingleCard from './components/SingleCard';
 
-const cardImages = [
-  {"src": "img/helmet-1.png", matched: false},
-  {"src": "img/potion-1.png", matched: false},
-  {"src": "img/ring-1.png", matched: false},
-  {"src": "img/scroll-1.png", matched: false},
-  {"src": "img/shield-1.png", matched: false},
-  {"src": "img/sword-1.png", matched: false},
+const cardImagesLvlOne = [
+  {"src": "memory-game/img/helmet-1.png", matched: false},
+  {"src": "memory-game/img/potion-1.png", matched: false},
+  {"src": "memory-game/img/ring-1.png", matched: false},
+  {"src": "memory-game/img/scroll-1.png", matched: false},
+  {"src": "memory-game/img/shield-1.png", matched: false},
+  {"src": "memory-game/img/sword-1.png", matched: false},
+]
+
+const cardImagesLvlTwo = [
+  {"src": "memory-game/img/helmet-1.png", matched: false},
+  {"src": "memory-game/img/potion-1.png", matched: false},
+  {"src": "memory-game/img/ring-1.png", matched: false},
+  {"src": "memory-game/img/scroll-1.png", matched: false},
+  {"src": "memory-game/img/shield-1.png", matched: false},
+  {"src": "memory-game/img/sword-1.png", matched: false},
+  {"src": "memory-game/img/axe-1.png", matched: false},
+  {"src": "memory-game/img/bag-1.png", matched: false},
 ]
 
 function App() {
@@ -19,8 +30,19 @@ function App() {
   const [disabled, setDisabled] = useState(false);
 
   //shuffle cards
-  const shuffleCards = () => {
-    const shuffledCards = [...cardImages, ...cardImages]
+  const shuffleCardsLvlOne = () => {
+    const shuffledCards = [...cardImagesLvlOne, ...cardImagesLvlOne]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }))
+
+      setChoiceOne(null)
+      setChoiceTwo(null)
+      setCards(shuffledCards)
+      setTurns(0)
+  }
+
+  const shuffleCardsLvlTwo = () => {
+    const shuffledCards = [...cardImagesLvlTwo, ...cardImagesLvlTwo]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
@@ -67,13 +89,14 @@ function App() {
 
   // Start a new game automatically 
   useEffect (() => {
-    shuffleCards()
+    shuffleCardsLvlOne()
   }, [])
 
   return (
     <div className="App">
       <h1>Memory game</h1>
-      <button onClick={shuffleCards}>New Game</button>
+      <button onClick={shuffleCardsLvlOne}>Level One</button>
+      <button onClick={shuffleCardsLvlTwo}>Level Two</button>
 
       <div className='card-grid'>
         {cards.map(card => (
