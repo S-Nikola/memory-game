@@ -5,58 +5,56 @@ import success from './sound/success.wav';
 import match from './sound/match.wav';
 
 const cardImagesLvlOne = [
-  {"src": "memory-game/img/helmet-1.png", matched: false},
-  {"src": "memory-game/img/potion-1.png", matched: false},
-  {"src": "memory-game/img/ring-1.png", matched: false},
-  {"src": "memory-game/img/scroll-1.png", matched: false},
-  {"src": "memory-game/img/shield-1.png", matched: false},
-  {"src": "memory-game/img/sword-1.png", matched: false},
+  {"src": "img/helmet-1.png", matched: false},
+  {"src": "img/potion-1.png", matched: false},
+  {"src": "img/ring-1.png", matched: false},
+  {"src": "img/scroll-1.png", matched: false},
+  {"src": "img/shield-1.png", matched: false},
+  {"src": "img/sword-1.png", matched: false},
 ]
 
 const cardImagesLvlTwo = [
-  {"src": "memory-game/img/helmet-1.png", matched: false},
-  {"src": "memory-game/img/potion-1.png", matched: false},
-  {"src": "memory-game/img/ring-1.png", matched: false},
-  {"src": "memory-game/img/scroll-1.png", matched: false},
-  {"src": "memory-game/img/shield-1.png", matched: false},
-  {"src": "memory-game/img/sword-1.png", matched: false},
-  {"src": "memory-game/img/axe-1.png", matched: false},
-  {"src": "memory-game/img/bag-1.png", matched: false},
+  {"src": "img/helmet-1.png", matched: false},
+  {"src": "img/potion-1.png", matched: false},
+  {"src": "img/ring-1.png", matched: false},
+  {"src": "img/scroll-1.png", matched: false},
+  {"src": "img/shield-1.png", matched: false},
+  {"src": "img/sword-1.png", matched: false},
+  {"src": "img/axe-1.png", matched: false},
+  {"src": "img/bag-1.png", matched: false},
 ]
 
 const cardImagesLvlThree = [
-  {"src": "memory-game/img/helmet-1.png", matched: false},
-  {"src": "memory-game/img/potion-1.png", matched: false},
-  {"src": "memory-game/img/ring-1.png", matched: false},
-  {"src": "memory-game/img/scroll-1.png", matched: false},
-  {"src": "memory-game/img/shield-1.png", matched: false},
-  {"src": "memory-game/img/sword-1.png", matched: false},
-  {"src": "memory-game/img/axe-1.png", matched: false},
-  {"src": "memory-game/img/bag-1.png", matched: false},
-  {"src": "memory-game/img/book-1.png", matched: false},
-  {"src": "memory-game/img/bow-1.png", matched: false},
-  {"src": "memory-game/img/candle-1.png", matched: false},
-  {"src": "memory-game/img/coins-1.png", matched: false},
+  {"src": "img/helmet-1.png", matched: false},
+  {"src": "img/potion-1.png", matched: false},
+  {"src": "img/ring-1.png", matched: false},
+  {"src": "img/scroll-1.png", matched: false},
+  {"src": "img/shield-1.png", matched: false},
+  {"src": "img/sword-1.png", matched: false},
+  {"src": "img/axe-1.png", matched: false},
+  {"src": "img/bag-1.png", matched: false},
+  {"src": "img/book-1.png", matched: false},
+  {"src": "img/bow-1.png", matched: false},
+  {"src": "img/candle-1.png", matched: false},
+  {"src": "img/coins-1.png", matched: false},
 ]
 
 const cardImagesLvlFour = [
-  {"src": "memory-game/img/helmet-1.png", matched: false},
-  {"src": "memory-game/img/potion-1.png", matched: false},
-  {"src": "memory-game/img/ring-1.png", matched: false},
-  {"src": "memory-game/img/scroll-1.png", matched: false},
-  {"src": "memory-game/img/shield-1.png", matched: false},
-  {"src": "memory-game/img/sword-1.png", matched: false},
-  {"src": "memory-game/img/axe-1.png", matched: false},
-  {"src": "memory-game/img/bag-1.png", matched: false},
-  {"src": "memory-game/img/book-1.png", matched: false},
-  {"src": "memory-game/img/bow-1.png", matched: false},
-  {"src": "memory-game/img/candle-1.png", matched: false},
-  {"src": "memory-game/img/coins-1.png", matched: false},
-  {"src": "memory-game/img/hat-1.png", matched: false},
-  {"src": "memory-game/img/quill-1.png", matched: false},
+  {"src": "img/helmet-1.png", matched: false},
+  {"src": "img/potion-1.png", matched: false},
+  {"src": "img/ring-1.png", matched: false},
+  {"src": "img/scroll-1.png", matched: false},
+  {"src": "img/shield-1.png", matched: false},
+  {"src": "img/sword-1.png", matched: false},
+  {"src": "img/axe-1.png", matched: false},
+  {"src": "img/bag-1.png", matched: false},
+  {"src": "img/book-1.png", matched: false},
+  {"src": "img/bow-1.png", matched: false},
+  {"src": "img/candle-1.png", matched: false},
+  {"src": "img/coins-1.png", matched: false},
+  {"src": "img/hat-1.png", matched: false},
+  {"src": "img/quill-1.png", matched: false},
 ]
-
-
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -117,20 +115,10 @@ function App() {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
 
-// sound effects
-useEffect(() => {
-  if (matchedCount === cards.length) {
-    if (soundEnabled) {
-      const successSound = new Audio(success);
-      successSound.play();
-    } 
-  }
-}, [matchedCount, cards.length, soundEnabled]);
-
 // handle a match
 useEffect (() => {
 
-  //sound effect fir matching
+  //sound effect for matching
   function matchSound () {
     if (soundEnabled) {
       const matchSound = new Audio(match);
@@ -160,6 +148,16 @@ useEffect (() => {
   }
 }, [choiceOne, choiceTwo, soundEnabled])
 
+// success sound effects
+useEffect(() => {
+  if (matchedCount === cards.length) {
+    if (soundEnabled) {
+      const successSound = new Audio(success);
+      successSound.play();
+    } 
+  }
+}, [matchedCount, cards.length, soundEnabled]);
+
   // reset choices & increase turn
   const resetTurn = () => {
     setChoiceOne(null)
@@ -180,10 +178,10 @@ useEffect (() => {
         {soundEnabled ? 'Disable Sound' : 'Enable Sound'}
       </button>
       <br />
-      <button onClick={shuffleCardsLvlOne}>Level One</button>
-      <button onClick={shuffleCardsLvlTwo}>Level Two</button>
-      <button onClick={shuffleCardsLvlThree}>Level Three</button>
-      <button onClick={shuffleCardsLvlFour}>Level Four</button>
+      <button onClick={shuffleCardsLvlOne}>Level 1</button>
+      <button onClick={shuffleCardsLvlTwo}>Level 2</button>
+      <button onClick={shuffleCardsLvlThree}>Level 3</button>
+      <button onClick={shuffleCardsLvlFour}>Level 4</button>
       <br />
       <p>Turns: {turns}</p>
 
